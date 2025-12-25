@@ -1,0 +1,260 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=candlestick-sh
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+  <div id="ai_prompt"><h2>AI 分析報告</h2>
+
+以下是三家公司在 2025-06-23 到 2025-12-19 的收盤價,5日均價,20日均價,60日均價：
+    {'close': {59: 56.0, 60: 56.0, 61: 56.75, 62: 56.35, 63: 56.95, 64: 57.0, 65: 57.4, 66: 58.45, 67: 58.4, 68: 58.2, 69: 57.25, 70: 57.8, 71: 58.1, 72: 59.2, 73: 60.05, 74: 61.7, 75: 61.15, 76: 61.6, 77: 61.0, 78: 60.7, 79: 61.8, 80: 63.0, 81: 62.05, 82: 63.1, 83: 63.2, 84: 62.7, 85: 62.35, 86: 63.8, 87: 63.35, 88: 64.4, 89: 64.4, 90: 64.75, 91: 64.15, 92: 63.95, 93: 63.15, 94: 63.3, 95: 62.55, 96: 63.35, 97: 62.9, 98: 63.2, 99: 62.9, 100: 61.7, 101: 61.9, 102: 60.45, 103: 60.05, 104: 61.9, 105: 59.85, 106: 59.55, 107: 60.35, 108: 61.35, 109: 61.9, 110: 62.35}, 'ma5': {59: 54.73, 60: 55.260000000000005, 61: 55.830000000000005, 62: 56.11, 63: 56.410000000000004, 64: 56.61, 65: 56.89000000000001, 66: 57.230000000000004, 67: 57.64, 68: 57.89, 69: 57.94, 70: 58.02, 71: 57.95, 72: 58.11, 73: 58.48, 74: 59.370000000000005, 75: 60.04, 76: 60.739999999999995, 77: 61.1, 78: 61.23, 79: 61.25, 80: 61.620000000000005, 81: 61.71, 82: 62.129999999999995, 83: 62.63000000000001, 84: 62.81, 85: 62.67999999999999, 86: 63.029999999999994, 87: 63.08, 88: 63.32000000000001, 89: 63.660000000000004, 90: 64.14000000000001, 91: 64.21000000000001, 92: 64.33000000000001, 93: 64.08000000000001, 94: 63.85999999999999, 95: 63.42, 96: 63.260000000000005, 97: 63.05, 98: 63.06, 99: 62.98, 100: 62.81, 101: 62.519999999999996, 102: 62.03000000000001, 103: 61.4, 104: 61.2, 105: 60.83, 106: 60.36, 107: 60.339999999999996, 108: 60.6, 109: 60.6, 110: 61.1}, 'ma20': {59: 53.00750000000001, 60: 53.142500000000005, 61: 53.32000000000001, 62: 53.552499999999995, 63: 53.8, 64: 54.0625, 65: 54.2975, 66: 54.5825, 67: 54.8525, 68: 55.1375, 69: 55.375, 70: 55.665, 71: 55.970000000000006, 72: 56.3325, 73: 56.720000000000006, 74: 57.1625, 75: 57.552499999999995, 76: 57.9375, 77: 58.24000000000001, 78: 58.5025, 79: 58.7925, 80: 59.1425, 81: 59.407500000000006, 82: 59.745000000000005, 83: 60.057500000000005, 84: 60.34250000000001, 85: 60.589999999999996, 86: 60.857499999999995, 87: 61.105000000000004, 88: 61.415, 89: 61.7725, 90: 62.120000000000005, 91: 62.4225, 92: 62.65999999999999, 93: 62.815, 94: 62.894999999999996, 95: 62.964999999999996, 96: 63.052499999999995, 97: 63.1475, 98: 63.2725, 99: 63.32750000000001, 100: 63.26250000000001, 101: 63.254999999999995, 102: 63.1225, 103: 62.964999999999996, 104: 62.925, 105: 62.8, 106: 62.5875, 107: 62.4375, 108: 62.285000000000004, 109: 62.160000000000004, 110: 62.04}, 'ma60': {59: 51.204166666666666, 60: 51.36016666666667, 61: 51.5145, 62: 51.650666666666666, 63: 51.795833333333334, 64: 51.941, 65: 52.09166666666667, 66: 52.25516666666667, 67: 52.417666666666676, 68: 52.565666666666665, 69: 52.7055, 70: 52.85933333333334, 71: 53.02183333333333, 72: 53.19433333333333, 73: 53.37166666666667, 74: 53.573, 75: 53.769999999999996, 76: 53.96333333333333, 77: 54.14, 78: 54.306666666666665, 79: 54.479166666666664, 80: 54.68083333333333, 81: 54.872499999999995, 82: 55.079166666666666, 83: 55.2825, 84: 55.479166666666664, 85: 55.667500000000004, 86: 55.89, 87: 56.09583333333333, 88: 56.31000000000001, 89: 56.53166666666666, 90: 56.764166666666675, 91: 56.97583333333333, 92: 57.19166666666667, 93: 57.370000000000005, 94: 57.55083333333334, 95: 57.7125, 96: 57.88666666666667, 97: 58.045833333333334, 98: 58.21333333333334, 99: 58.37583333333334, 100: 58.51583333333333, 101: 58.660833333333336, 102: 58.806666666666665, 103: 58.94083333333333, 104: 59.11, 105: 59.229166666666664, 106: 59.3425, 107: 59.465, 108: 59.6125, 109: 59.76916666666667, 110: 59.94166666666667}}
+
+請用投資顧問的口吻，分析未來的的趨勢為何，需要注意什麼風險，並用 200 字左右說明。
+
+以下是三家公司在 2025-06-23 到 2025-12-19 的收盤價、5日均價、20日均價和60日均價的數據��示，��公司在此期間的股價呈現��定上升的��勢。特別是在最近��周，股價不��創新高，��示出市場對其未來表現的信心。5日均價、20日均價和60日均價的上升也進一步支持了這一��勢。
+
+然而 <P>
+</div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <script src="0050.js"></script>
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+const upColor = '#ec0000';
+const upBorderColor = '#8A0000';
+const downColor = '#00da3c';
+const downBorderColor = '#008F28';
+// Each item: open，close，lowest，highest
+const data0 = splitData(org_data);
+function splitData(rawData) {
+  const categoryData = [];
+  const values = [];
+  for (var i = 0; i < rawData.length; i++) {
+    categoryData.push(rawData[i].splice(0, 1)[0]);
+    values.push(rawData[i]);
+  }
+  return {
+    categoryData: categoryData,
+    values: values
+  };
+}
+function calculateMA(dayCount) {
+  var result = [];
+  for (var i = 0, len = data0.values.length; i < len; i++) {
+    if (i < dayCount) {
+      result.push('-');
+      continue;
+    }
+    var sum = 0;
+    for (var j = 0; j < dayCount; j++) {
+      sum += +data0.values[i - j][1];
+    }
+    result.push(sum / dayCount);
+  }
+  return result;
+}
+option = {
+  title: {
+    text: '0050',
+    left: 0
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross'
+    }
+  },
+  legend: {
+    data: ['日K', 'MA5', 'MA10', 'MA20', 'MA30'],
+    top: 20
+  },
+  grid: {
+    left: '10%',
+    right: '10%',
+    bottom: '15%'
+  },
+  xAxis: {
+    type: 'category',
+    data: data0.categoryData,
+    boundaryGap: false,
+    axisLine: { onZero: false },
+    splitLine: { show: false },
+    min: 'dataMin',
+    max: 'dataMax'
+  },
+  yAxis: {
+    scale: true,
+    splitArea: {
+      show: true
+    }
+  },
+  dataZoom: [
+    {
+      type: 'inside',
+      start: 50,
+      end: 100
+    },
+    {
+      show: true,
+      type: 'slider',
+      top: '90%',
+      start: 50,
+      end: 100
+    }
+  ],
+  series: [
+    {
+      name: '日K',
+      type: 'candlestick',
+      data: data0.values,
+      itemStyle: {
+        color: upColor,
+        color0: downColor,
+        borderColor: upBorderColor,
+        borderColor0: downBorderColor
+      },
+      markPoint: {
+        label: {
+          formatter: function (param) {
+            return param != null ? Math.round(param.value) + '' : '';
+          }
+        },
+        data: [
+          {
+            name: 'Mark',
+            coord: ['2013/5/31', 2300],
+            value: 2300,
+            itemStyle: {
+              color: 'rgb(41,60,85)'
+            }
+          },
+          {
+            name: 'highest value',
+            type: 'max',
+            valueDim: 'highest'
+          },
+          {
+            name: 'lowest value',
+            type: 'min',
+            valueDim: 'lowest'
+          },
+          {
+            name: 'average value on close',
+            type: 'average',
+            valueDim: 'close'
+          }
+        ],
+        tooltip: {
+          formatter: function (param) {
+            return param.name + '<br>' + (param.data.coord || '');
+          }
+        }
+      },
+      markLine: {
+        symbol: ['none', 'none'],
+        data: [
+          [
+            {
+              name: 'from lowest to highest',
+              type: 'min',
+              valueDim: 'lowest',
+              symbol: 'circle',
+              symbolSize: 10,
+              label: {
+                show: false
+              },
+              emphasis: {
+                label: {
+                  show: false
+                }
+              }
+            },
+            {
+              type: 'max',
+              valueDim: 'highest',
+              symbol: 'circle',
+              symbolSize: 10,
+              label: {
+                show: false
+              },
+              emphasis: {
+                label: {
+                  show: false
+                }
+              }
+            }
+          ],
+          {
+            name: 'min line on close',
+            type: 'min',
+            valueDim: 'close'
+          },
+          {
+            name: 'max line on close',
+            type: 'max',
+            valueDim: 'close'
+          }
+        ]
+      }
+    },
+    {
+      name: 'MA5',
+      type: 'line',
+      data: calculateMA(5),
+      smooth: true,
+      lineStyle: {
+        opacity: 0.5
+      }
+    },
+    {
+      name: 'MA10',
+      type: 'line',
+      data: calculateMA(10),
+      smooth: true,
+      lineStyle: {
+        opacity: 0.5
+      }
+    },
+    {
+      name: 'MA20',
+      type: 'line',
+      data: calculateMA(20),
+      smooth: true,
+      lineStyle: {
+        opacity: 0.5
+      }
+    },
+    {
+      name: 'MA30',
+      type: 'line',
+      data: calculateMA(30),
+      smooth: true,
+      lineStyle: {
+        opacity: 0.5
+      }
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
